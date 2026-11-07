@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>EventFlow — управление участниками</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Перейти к содержимому</a>
+
+  <svg class="icon-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="icon-logo" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="16" rx="3"></rect>
+      <path d="M8 3v4M16 3v4M3 10h18"></path>
+      <path d="M8 14h3M8 17h6"></path>
+    </symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24">
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+      <circle cx="9" cy="7" r="4"></circle>
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
+    </symbol>
+    <symbol id="icon-check-circle" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"></circle>
+      <path d="m8.5 12.5 2.5 2.5 4.5-5"></path>
+    </symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"></circle>
+      <path d="M12 7v5l3 2"></path>
+    </symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="7"></circle>
+      <path d="m20 20-4-4"></path>
+    </symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24">
+      <path d="M12 5v14M5 12h14"></path>
+    </symbol>
+    <symbol id="icon-upload" viewBox="0 0 24 24">
+      <path d="M12 16V4m0 0 4 4m-4-4-4 4"></path>
+      <path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"></path>
+    </symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24">
+      <path d="M12 4v12m0 0 4-4m-4 4-4-4"></path>
+      <path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"></path>
+    </symbol>
+    <symbol id="icon-restore" viewBox="0 0 24 24">
+      <path d="M3 4v6h6"></path>
+      <path d="M3.5 10a8.5 8.5 0 1 0 2.1-5.6L3 7"></path>
+    </symbol>
+    <symbol id="icon-info" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"></circle>
+      <path d="M12 11v5M12 8h.01"></path>
+    </symbol>
+    <symbol id="icon-alert" viewBox="0 0 24 24">
+      <path d="M10.3 4.2 2.7 18a2 2 0 0 0 1.8 3h15a2 2 0 0 0 1.8-3L13.7 4.2a2 2 0 0 0-3.4 0Z"></path>
+      <path d="M12 9v4M12 17h.01"></path>
+    </symbol>
+    <symbol id="icon-inbox" viewBox="0 0 24 24">
+      <path d="M4 4h16v16H4z"></path>
+      <path d="M4 14h4l2 3h4l2-3h4"></path>
+    </symbol>
+    <symbol id="icon-user-plus" viewBox="0 0 24 24">
+      <path d="M15 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+      <circle cx="8.5" cy="7" r="4"></circle>
+      <path d="M19 8v6M16 11h6"></path>
+    </symbol>
+    <symbol id="icon-edit" viewBox="0 0 24 24">
+      <path d="M12 20h9"></path>
+      <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"></path>
+    </symbol>
+    <symbol id="icon-archive" viewBox="0 0 24 24">
+      <path d="M4 7h16v13H4zM3 4h18v3H3z"></path>
+      <path d="M10 11h4"></path>
+    </symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24">
+      <path d="m5 12 4 4L19 6"></path>
+    </symbol>
+    <symbol id="icon-database" viewBox="0 0 24 24">
+      <ellipse cx="12" cy="5" rx="8" ry="3"></ellipse>
+      <path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"></path>
+      <path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"></path>
+    </symbol>
+    <symbol id="icon-x" viewBox="0 0 24 24">
+      <path d="M6 6l12 12M18 6 6 18"></path>
+    </symbol>
+    <symbol id="icon-eye" viewBox="0 0 24 24">
+      <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z"></path>
+      <circle cx="12" cy="12" r="2.5"></circle>
+    </symbol>
+  </svg>
+
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="brand" aria-label="EventFlow">
+        <span class="brand__mark" aria-hidden="true">
+          <svg class="icon icon--brand" focusable="false"><use href="#icon-logo"></use></svg>
+        </span>
+        <span class="brand__name">EventFlow</span>
+      </div>
+
+      <div class="event-heading">
+        <p class="eyebrow">Событие</p>
+        <h1 id="event-name">Загрузка события…</h1>
+        <p class="event-meta" id="event-meta">Читаем настройки из IndexedDB</p>
+      </div>
+
+      <div class="header-actions" aria-label="Резервная копия">
+        <span class="storage-badge" id="storage-note">
+          <span class="storage-badge__dot" aria-hidden="true"></span>
+          Данные в этом браузере
+        </span>
+        <button class="btn btn--secondary" id="export-json" type="button" disabled aria-describedby="stage-note">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-download"></use></svg>
+          <span id="export-json-label">Экспорт JSON</span>
+        </button>
+        <button class="btn btn--secondary" id="restore-json" type="button" disabled aria-describedby="stage-note">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-restore"></use></svg>
+          <span id="restore-json-label">Восстановить копию</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="metrics" aria-labelledby="metrics-title" aria-busy="true">
+        <h2 class="visually-hidden" id="metrics-title">Показатели события</h2>
+
+        <article class="metric-card metric-card--total" aria-labelledby="metric-total-label">
+          <div class="metric-card__head">
+            <span class="metric-icon" aria-hidden="true">
+              <svg class="icon" focusable="false"><use href="#icon-users"></use></svg>
+            </span>
+            <h3 class="metric-label" id="metric-total-label">Всего активных</h3>
+          </div>
+          <p class="metric-value" id="metric-total">0</p>
+          <p class="metric-hint">Без архивных записей</p>
+        </article>
+
+        <article class="metric-card metric-card--confirmed" aria-labelledby="metric-confirmed-label">
+          <div class="metric-card__head">
+            <span class="metric-icon" aria-hidden="true">
+              <svg class="icon" focusable="false"><use href="#icon-check-circle"></use></svg>
+            </span>
+            <h3 class="metric-label" id="metric-confirmed-label">Подтверждены</h3>
+          </div>
+          <p class="metric-value" id="metric-confirmed">0</p>
+          <p class="metric-hint">Готовы участвовать</p>
+        </article>
+
+        <article class="metric-card metric-card--arrived" aria-labelledby="metric-arrived-label">
+          <div class="metric-card__head">
+            <span class="metric-icon" aria-hidden="true">
+              <svg class="icon" focusable="false"><use href="#icon-check"></use></svg>
+            </span>
+            <h3 class="metric-label" id="metric-arrived-label">Пришли</h3>
+          </div>
+          <p class="metric-value" id="metric-arrived">0</p>
+          <p class="metric-hint">Отмечены на входе</p>
+        </article>
+
+        <article class="metric-card metric-card--waitlist" aria-labelledby="metric-waitlist-label">
+          <div class="metric-card__head">
+            <span class="metric-icon" aria-hidden="true">
+              <svg class="icon" focusable="false"><use href="#icon-clock"></use></svg>
+            </span>
+            <h3 class="metric-label" id="metric-waitlist-label">Лист ожидания</h3>
+          </div>
+          <p class="metric-value" id="metric-waitlist">0</p>
+          <p class="metric-hint">Ожидают места</p>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <div class="panel participants-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Участники</h2>
+              <p class="panel-subtitle" id="result-summary">Загружаем участников…</p>
+            </div>
+            <div class="primary-actions">
+              <button class="btn btn--primary" id="add-participant" type="button">
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-plus"></use></svg>
+                Добавить участника
+              </button>
+              <button class="btn btn--secondary" id="import-csv" type="button" aria-haspopup="dialog">
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-upload"></use></svg>
+                Импорт CSV
+              </button>
+            </div>
+          </div>
+
+          <div class="toolbar" role="search" aria-label="Поиск и фильтры">
+            <label class="field field--search">
+              <span class="field__label">Поиск</span>
+              <span class="search-control">
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-search"></use></svg>
+                <input id="search" type="search" placeholder="Имя, email или компания" autocomplete="off">
+              </span>
+            </label>
+
+            <label class="field">
+              <span class="field__label">Статус</span>
+              <select id="status-filter">
+                <option value="">Все статусы</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span class="field__label">Билет</span>
+              <select id="ticket-filter">
+                <option value="">Все билеты</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span class="field__label">Сортировка</span>
+              <select id="sort-order">
+                <option value="registered-desc">Сначала новые</option>
+                <option value="registered-asc">Сначала ранние</option>
+                <option value="name-asc">Имя: А–Я</option>
+                <option value="name-desc">Имя: Я–А</option>
+              </select>
+            </label>
+
+            <button class="btn btn--ghost" id="reset-filters" type="button" disabled>
+              Сбросить
+            </button>
+          </div>
+
+          <p class="stage-note" id="stage-note">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-info"></use></svg>
+            Экспорт JSON сохраняет полную копию. При восстановлении приложение сначала проверит файл и покажет предпросмотр — данные заменятся только после отдельного подтверждения.
+          </p>
+
+          <div class="table-region" id="table-region" aria-live="polite" aria-busy="true">
+            <div class="table-skeleton" aria-hidden="true">
+              <div class="skeleton-row">
+                <span class="skeleton"></span>
+                <span class="skeleton"></span>
+                <span class="skeleton"></span>
+                <span class="skeleton"></span>
+                <span class="skeleton"></span>
+              </div>
+              <div class="skeleton-row">
+                <span class="skeleton"></span>
+                <span class="skeleton"></span>
+                <span class="skeleton"></span>
+                <span class="skeleton"></span>
+                <span class="skeleton"></span>
+              </div>
+              <div class="skeleton-row">
+                <span class="skeleton"></span>
+                <span class="skeleton"></span>
+                <span class="skeleton"></span>
+                <span class="skeleton"></span>
+                <span class="skeleton"></span>
+              </div>
+              <div class="skeleton-row">
+                <span class="skeleton"></span>
+                <span class="skeleton"></span>
+                <span class="skeleton"></span>
+                <span class="skeleton"></span>
+                <span class="skeleton"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="panel activity-panel" aria-labelledby="activity-title">
+          <div class="panel-head panel-head--compact">
+            <div>
+              <h2 id="activity-title">Журнал действий</h2>
+              <p class="panel-subtitle">Последние события</p>
+            </div>
+            <span class="count-badge" id="activity-count" aria-label="Всего действий">0</span>
+          </div>
+          <div class="activity-list" id="activity-list" aria-live="polite" aria-busy="true">
+            <div class="activity-skeleton" aria-hidden="true">
+              <span class="skeleton"></span>
+              <span class="skeleton"></span>
+              <span class="skeleton"></span>
+              <span class="skeleton"></span>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>EventFlow · локальное приложение</p>
+      <p>Данные не отправляются в сеть и хранятся в IndexedDB этого браузера.</p>
+    </footer>
+  </div>
+
+  <dialog class="dialog" id="participant-dialog" aria-labelledby="participant-dialog-title">
+    <form class="participant-form" id="participant-form" novalidate>
+      <header class="dialog__head">
+        <div>
+          <p class="eyebrow">Участник</p>
+          <h2 id="participant-dialog-title">Новый участник</h2>
+          <p class="dialog__subtitle" id="participant-dialog-subtitle">Заполните поля и сохраните запись.</p>
+        </div>
+        <button class="icon-btn" type="button" data-close-dialog aria-label="Закрыть форму">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-x"></use></svg>
+        </button>
+      </header>
+
+      <div class="dialog__body">
+        <p class="form-alert" id="participant-form-error" role="alert" hidden></p>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="form-label" for="participant-name">
+              Имя <span class="required" aria-hidden="true">*</span>
+            </label>
+            <input id="participant-name" name="name" type="text" autocomplete="name" maxlength="120" required aria-describedby="participant-name-error">
+            <p class="field-error" id="participant-name-error"></p>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="participant-email">
+              Email <span class="required" aria-hidden="true">*</span>
+            </label>
+            <input id="participant-email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="160" required aria-describedby="participant-email-error">
+            <p class="field-error" id="participant-email-error"></p>
+          </div>
+
+          <div class="form-field form-field--wide">
+            <label class="form-label" for="participant-company">Компания</label>
+            <input id="participant-company" name="company" type="text" autocomplete="organization" maxlength="160" aria-describedby="participant-company-error">
+            <p class="field-error" id="participant-company-error"></p>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="participant-ticket">Тип билета</label>
+            <select id="participant-ticket" name="ticket" aria-describedby="participant-ticket-error"></select>
+            <p class="field-error" id="participant-ticket-error"></p>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="participant-status">Статус</label>
+            <select id="participant-status" name="status" aria-describedby="participant-status-error"></select>
+            <p class="field-error" id="participant-status-error"></p>
+          </div>
+
+          <div class="form-field form-field--wide form-field--check">
+            <label class="checkbox" for="participant-checked-in">
+              <input id="participant-checked-in" name="checkedIn" type="checkbox" aria-describedby="participant-checked-in-hint">
+              <span>Участник пришёл</span>
+            </label>
+            <p class="field-hint" id="participant-checked-in-hint">Отметка доступна только для статуса «Подтверждён».</p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="dialog__foot">
+        <button class="btn btn--secondary" type="button" data-close-dialog>Отмена</button>
+        <button class="btn btn--primary" id="participant-submit" type="submit">Сохранить</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <dialog class="dialog" id="details-dialog" aria-labelledby="details-title">
+    <header class="dialog__head">
+      <div>
+        <p class="eyebrow">Участник</p>
+        <h2 id="details-title">Участник</h2>
+      </div>
+      <button class="icon-btn" type="button" data-close-dialog aria-label="Закрыть карточку">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-x"></use></svg>
+      </button>
+    </header>
+    <div class="dialog__body" id="details-body"></div>
+    <footer class="dialog__foot" id="details-actions"></footer>
+  </dialog>
+
+  <input type="file" id="csv-file" accept=".csv,text/csv" hidden>
+  <input type="file" id="json-file" accept=".json,application/json" hidden>
+
+  <dialog class="dialog dialog--wide" id="import-dialog" aria-labelledby="import-dialog-title">
+    <form class="import-form" id="import-form" novalidate>
+      <header class="dialog__head">
+        <div>
+          <p class="eyebrow">Импорт</p>
+          <h2 id="import-dialog-title">Импорт участников из CSV</h2>
+          <p class="dialog__subtitle" id="import-dialog-subtitle">Файл не выбран</p>
+        </div>
+        <button class="icon-btn" type="button" data-close-dialog aria-label="Закрыть импорт">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-x"></use></svg>
+        </button>
+      </header>
+
+      <div class="dialog__body">
+        <p class="form-alert" id="import-error" role="alert" hidden></p>
+        <div id="import-body" aria-live="polite"></div>
+      </div>
+
+      <footer class="dialog__foot">
+        <button class="btn btn--secondary" id="import-cancel" type="button" data-close-dialog>Отмена</button>
+        <button class="btn btn--primary" id="import-submit" type="submit" disabled>Импортировать</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <dialog class="dialog dialog--backup" id="restore-dialog" aria-labelledby="restore-dialog-title">
+    <form class="restore-form" id="restore-form" novalidate>
+      <header class="dialog__head">
+        <div>
+          <p class="eyebrow">Резервная копия</p>
+          <h2 id="restore-dialog-title">Восстановление из JSON</h2>
+          <p class="dialog__subtitle" id="restore-dialog-subtitle">Файл не выбран</p>
+        </div>
+        <button class="icon-btn" type="button" data-close-dialog aria-label="Закрыть восстановление">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-x"></use></svg>
+        </button>
+      </header>
+
+      <div class="dialog__body">
+        <p class="form-alert" id="restore-error" role="alert" hidden></p>
+        <div id="restore-body" aria-live="polite"></div>
+      </div>
+
+      <footer class="dialog__foot">
+        <button class="btn btn--secondary" id="restore-cancel" type="button" data-close-dialog>Отмена</button>
+        <button class="btn btn--secondary" id="restore-back" type="button" hidden>Назад к предпросмотру</button>
+        <button class="btn btn--primary" id="restore-submit" type="submit" disabled>Продолжить</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <div class="toast-region" id="toast-region" role="status" aria-live="polite" aria-atomic="false"></div>
+
+  <noscript>
+    <p class="noscript-note">Для работы EventFlow включите JavaScript в браузере.</p>
+  </noscript>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
