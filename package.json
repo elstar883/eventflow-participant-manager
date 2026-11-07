@@ -1,0 +1,16 @@
+{
+  "name": "eventflow-participant-manager",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Локальный менеджер участников события: IndexedDB, CRUD, проверка CSV, JSON-бэкапы и журнал действий.",
+  "license": "MIT",
+  "author": "Elsa (elstar883)",
+  "scripts": {
+    "check": "node scripts/validate.mjs",
+    "serve": "python3 -m http.server 8080 --directory app"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
