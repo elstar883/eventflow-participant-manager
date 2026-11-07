@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "exportedAt": "2026-10-31T11:24:15.819Z",
+  "event": {
+    "name": "Практикум «Продукты с ИИ»",
+    "venue": "Учебный центр",
+    "capacity": 120
+  },
+  "participants": [
+    {
+      "id": "045b3f3c-a5db-4e8a-95ae-d7388c6b8134",
+      "name": "Павел Ершов",
+      "email": "pavel.ershov@example.ru",
+      "company": "Мост",
+      "ticket": "vip",
+      "status": "confirmed",
+      "checkedIn": false,
+      "registeredAt": "2026-08-24T11:30:00.000Z",
+      "archivedAt": null,
+      "updatedAt": "2026-10-30T18:11:27.676Z"
+    },
+    {
+      "id": "1a86b15e-23d1-4646-8669-260f450cdc83",
+      "name": "Николай Морозов",
+      "email": "nikolay.morozov@example.ru",
+      "company": "Линия",
+      "ticket": "business",
+      "status": "confirmed",
+      "checkedIn": true,
+      "registeredAt": "2026-08-21T15:45:00.000Z",
+      "archivedAt": null,
+      "updatedAt": "2026-10-30T18:10:50.918Z"
+    },
+    {
+      "id": "273ba0c9-041c-4877-a7db-aee38256a641",
+      "name": "Анастасия Миронова",
+      "email": "amironova@example.com",
+      "company": "ООО ПРИМЕР",
+      "ticket": "standard",
+      "status": "new",
+      "checkedIn": false,
+      "registeredAt": "2026-10-30T17:48:52.108Z",
+      "archivedAt": null,
+      "updatedAt": "2026-10-30T17:48:52.108Z"
+    },
+    {
+      "id": "30e627a6-465a-4586-afdc-a6fc9f98502f",
+      "name": "Елена Васильева",
+      "email": "elena.vasilieva@example.ru",
+      "company": "Пульс",
+      "ticket": "business",
+      "status": "confirmed",
+      "checkedIn": true,
+      "registeredAt": "2026-08-20T07:55:00.000Z",
+      "archivedAt": null,
+      "updatedAt": "2026-10-30T18:10:50.918Z"
+    },
+    {
+      "id": "4ab746bd-501d-4bd5-863b-2f01a800cdc1",
+      "name": "Дмитрий Соколов",
+      "email": "dmitry.sokolov@example.ru",
+      "company": "Вектор",
+      "ticket": "standard",
+      "status": "waitlist",
+      "checkedIn": false,
+      "registeredAt": "2026-08-19T12:15:00.000Z",
+      "archivedAt": null,
+      "updatedAt": "2026-10-30T18:10:50.918Z"
+    },
+    {
+      "id": "4ac36efa-e4a7-447d-b314-44cd006591e7",
+      "name": "Мария Кузнецова",
+      "email": "maria.kuznetsova@example.ru",
+      "company": "Север",
+      "ticket": "business",
+      "status": "new",
+      "checkedIn": false,
+      "registeredAt": "2026-08-19T08:40:00.000Z",
+      "archivedAt": null,
+      "updatedAt": "2026-10-30T18:10:50.918Z"
+    },
+    {
+      "id": "4f918c57-c1b5-453f-9726-e3e883488a71",
+      "name": "Алексей Попов",
+      "email": "alexey.popov@example.ru",
+      "company": "Гранит",
+      "ticket": "standard",
+      "status": "cancelled",
+      "checkedIn": false,
+      "registeredAt": "2026-08-20T13:30:00.000Z",
+      "archivedAt": null,
+      "updatedAt": "2026-10-30T18:10:50.918Z"
+    },
+    {
+      "id": "549f5980-0ebe-4585-9e87-b1f64659e1df",
+      "name": "Вера Алексеева",
+      "email": "vera.alexeeva@example.ru",
+      "company": "Старт",
+      "ticket": "standard",
+      "status": "new",
+      "checkedIn": false,
+      "registeredAt": "2026-08-23T08:35:00.000Z",
+      "archivedAt": null,
+      "updatedAt": "2026-10-30T18:10:50.918Z"
+    },
+    {
+      "id": "7bcb1302-ef7b-44e0-9194-7489869aec3b",
+      "name": "Иван Смирнов",
+      "email": "ivan.smirnov@example.ru",
+      "company": "Альфа",
+      "ticket": "standard",
+      "status": "confirmed",
+      "checkedIn": false,
+      "registeredAt": "2026-08-18T11:05:00.000Z",
+      "archivedAt": null,
+      "updatedAt": "2026-10-30T18:10:50.918Z"
+    },
+    {
+      "id": "9b43c5a1-f7d3-441c-a662-4c6e7115d86c",
+      "name": "София Новикова",
+      "email": "sofia.novikova@example.ru",
+      "company": "Маяк",
+      "ticket": "vip",
+      "status": "new",
+      "checkedIn": false,
+      "registeredAt": "2026-08-21T10:10:00.000Z",
+      "archivedAt": null,
+      "updatedAt": "2026-10-30T18:10:50.918Z"
+    },
+    {
+      "id": "c4e02865-7f81-4112-b722-bfd1711ac1c6",
+      "name": "Ирина Фёдорова",
+      "email": "irina.fedorova@example.ru",
+      "company": "Орион",
+      "ticket": "standard",
+      "status": "waitlist",
+      "checkedIn": false,
+      "registeredAt": "2026-08-22T09:00:00.000Z",
+      "archivedAt": null,
+      "updatedAt": "2026-10-30T18:10:50.918Z"
+    },
+    {
+      "id": "d2847868-252c-4a2f-8dba-a03a5f69fa29",
+      "name": "Анна Волкова",
+      "email": "anna.volkova@example.ru",
+      "company": "ZeroCoder",
+      "ticket": "vip",
+      "status": "confirmed",
+      "checkedIn": true,
+      "registeredAt": "2026-08-18T09:20:00.000Z",
+      "archivedAt": null,
+      "updatedAt": "2026-10-30T18:10:50.918Z"
+    },
+    {
+      "id": "dec52984-1692-45b0-87ea-df8ab1ac8072",
+      "name": "Ольга Белова",
+      "email": "olga.belova@example.ru",
+      "company": "Точка",
+      "ticket": "standard",
+      "status": "new",
+      "checkedIn": false,
+      "registeredAt": "2026-08-24T08:10:00.000Z",
+      "archivedAt": "2026-10-31T11:23:37.373Z",
+      "updatedAt": "2026-10-31T11:23:37.373Z"
+    },
+    {
+      "id": "df463e7a-771a-41a9-aec9-acfaf3110f1f",
+      "name": "Михаил Волков",
+      "email": "mikhail.volkov@example.ru",
+      "company": "Клевер",
+      "ticket": "vip",
+      "status": "confirmed",
+      "checkedIn": false,
+      "registeredAt": "2026-08-22T14:25:00.000Z",
+      "archivedAt": null,
+      "updatedAt": "2026-10-30T18:10:50.918Z"
+    },
+    {
+      "id": "fb55b7ff-9ecd-4bb7-bd1d-a4539b587f9c",
+      "name": "Павел Лебедев",
+      "email": "pavel.lebedev@example.ru",
+      "company": "Фокус",
+      "ticket": "business",
+      "status": "confirmed",
+      "checkedIn": false,
+      "registeredAt": "2026-08-23T16:05:00.000Z",
+      "archivedAt": null,
+      "updatedAt": "2026-10-30T18:10:50.918Z"
+    }
+  ],
+  "activity": [
+    {
+      "id": "5d512716-2270-4ff1-96e3-8910b03b5f8e",
+      "type": "participant_added",
+      "message": "Добавлен участник: Анастасия Миронова",
+      "participantId": "273ba0c9-041c-4877-a7db-aee38256a641",
+      "createdAt": "2026-10-30T17:48:52.108Z",
+      "meta": {}
+    },
+    {
+      "id": "c1b76954-dbe1-4223-9db3-6d73fac93220",
+      "type": "archived",
+      "message": "Участник отправлен в архив: Ольга Белова",
+      "participantId": "dec52984-1692-45b0-87ea-df8ab1ac8072",
+      "createdAt": "2026-10-31T11:23:37.373Z",
+      "meta": {}
+    },
+    {
+      "id": "ce0660aa-bd68-4d66-a66b-7a8f872dcfbf",
+      "type": "imported",
+      "message": "Импорт CSV: добавлено 12 из 12 строк.",
+      "participantId": null,
+      "createdAt": "2026-10-30T18:10:50.919Z",
+      "meta": {
+        "total": 12,
+        "imported": 12,
+        "skipped": 0
+      }
+    },
+    {
+      "id": "e8c0717c-5dee-4f5b-8108-50d54ff9b1a9",
+      "type": "imported",
+      "message": "Импорт CSV: добавлено 2 из 2 строк.",
+      "participantId": null,
+      "createdAt": "2026-10-30T18:11:27.676Z",
+      "meta": {
+        "total": 2,
+        "imported": 2,
+        "skipped": 0
+      }
+    }
+  ]
+}
