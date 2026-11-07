@@ -1,0 +1,28 @@
+# OS and editor noise
+.DS_Store
+Thumbs.db
+*.swp
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Node tooling (the app itself has no runtime dependencies)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Browser automation artifacts
+.playwright-mcp/
+playwright-report/
+test-results/
+
+# Build and archive artifacts
+*.zip
+*.tar.gz
+coverage/
+
+# Course materials stay local and are never published
+*.pdf
